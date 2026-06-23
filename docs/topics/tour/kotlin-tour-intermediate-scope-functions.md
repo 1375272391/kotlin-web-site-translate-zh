@@ -3,7 +3,7 @@
 <no-index/>
 
 <tldr>
-    <p><img src="icon-1-done.svg" width="20" alt="First step" /> <a href="kotlin-tour-intermediate-extension-functions.md">Extension functions</a><br />
+    <p><img src="icon-1-done.svg" width="20" alt="First step" /> <a href="kotlin-tour-intermediate-extension-functions.md">Extension functions 扩展函数</a><br />
         <img src="icon-2.svg" width="20" alt="Second step" /> <strong>Scope functions</strong><br />
         <img src="icon-3-todo.svg" width="20" alt="Third step" /> <a href="kotlin-tour-intermediate-lambdas-receiver.md">Lambda expressions with receiver</a><br />
         <img src="icon-4-todo.svg" width="20" alt="Fourth step" /> <a href="kotlin-tour-intermediate-classes-interfaces.md">Classes and interfaces</a><br />
@@ -16,28 +16,40 @@
 
 In this chapter, you'll build on your understanding of extension functions to learn how to use scope functions to 
 write more idiomatic code.
+<br />在本章中，你将在对扩展函数的理解基础上，学习如何使用作用域函数来编写更符合惯用语法的代码。
 
 ## Scope functions
+作用域函数
 
 In programming, a scope is the area in which your variable or object is recognized. The most commonly referred to scopes
 are the global scope and the local scope:
+<br >在编程中，范围是识别变量或对象的区域。最常提到的范围分别是全局作用域和局部作用域：
 
 * **Global scope** – a variable or object that is accessible from anywhere in the program.
+<br />**全局作用域** – 可以从程序中的任何位置访问的变量或对象。
 * **Local scope** – a variable or object that is only accessible within the block or function where it is defined.
+<br />**局部作用域** – 仅在定义它的代码块或函数内可访问的变量或对象。
 
 In Kotlin, there are also scope functions that allow you to create a temporary scope around an object and execute some code.
+<br />在 Kotlin 中，还有作用域函数，允许你围绕一个对象创建一个临时作用域并执行一些代码。
 
 Scope functions make your code more concise because you don't have to refer to the name of your object within the temporary
 scope. Depending on the scope function, you can access the object either by referencing it via the keyword `this` or using it as an
 argument via the keyword `it`.
+<br />作用域函数使你的代码更简洁，因为你无需在临时作用域内引用对象的名称。根据作用域函数的不同，你可以通过关键字 `this` 引用对象，也可以通过关键字 `it` 
+将其作为参数传递来访问对象。
 
 Kotlin has five scope functions in total: `let`, `apply`, `run`, `also`, and `with`.
+<br />Kotlin 共有五个作用域函数：`let`、`apply`、`run`、`also` 和 `with`。
 
 Each scope function takes a lambda expression and returns either the object or the result of the lambda expression. In 
 this tour, we explain each scope function and how to use it.
+<br />每个作用域函数都接受一个 lambda 表达式，并返回该 lambda 表达式的对象或结果。在本教程中，我们将解释每个作用域函数及其用法。
 
 > You can also watch the [Back to the Stdlib: Making the Most of Kotlin's Standard Library](https://youtu.be/DdvgvSHrN9g?feature=shared&t=1511)
 > talk on scope functions by Sebastian Aigner, Kotlin developer advocate.
+> <br />您还可以观看 Kotlin 开发者倡导者 Sebastian Aigner 的演讲
+[回到标准库：充分利用 Kotlin 标准库中的作用域函数](https://youtu.be/DdvgvSHrN9g?feature=shared&t=1511)。
 > 
 {style="tip"}
 
@@ -45,8 +57,10 @@ this tour, we explain each scope function and how to use it.
 
 Use the `let` scope function when you want to perform null checks in your code and later perform further actions
 with the returned object.
+<br />当你想在代码中执行空值检查，并在之后对返回的对象执行进一步操作时，请使用 `let` 作用域函数。
 
 Consider the example:
+<br />请看以下示例：
 
 ```kotlin
 fun sendNotification(recipientAddress: String): String {
@@ -66,20 +80,27 @@ fun main() {
 {validate = "false"}
 
 The example has two functions:
+<br />该示例包含两个函数：
 * `sendNotification()`, which has a function parameter `recipientAddress` and returns a string.
+<br />`sendNotification()`，它有一个函数参数 `recipientAddress`，并返回一个字符串。
 * `getNextAddress()`, which has no function parameters and returns a string.
+<br />`getNextAddress()`，该函数没有参数，返回一个字符串。
 
 The example creates a variable `address` that has a nullable `String` type. But this becomes a problem when you call
 the `sendNotification()` function because this function doesn't expect that `address` could be a `null` value.
 The compiler reports an error as a result: 
-
+<br />示例创建了一个名为 `address` 的变量，其类型为可为空的 `String`。
+但是，当您调用 `sendNotification()` 函数时，就会出现问题，因为该函数不接受 `address` 为 `null` 值。 因此，编译器会报告一个错误：
 ```text
 Argument type mismatch: actual type is 'String?', but 'String' was expected.
+参数类型不匹配：实际类型为'String?'，但预期类型为'String'。
 ```
 
 From the beginner tour, you already know that you can perform a null check with an if condition or use the [Elvis operator `?:`](kotlin-tour-null-safety.md#use-elvis-operator). 
 But what if you want to use the returned object later in your code? You could achieve this with an if condition **and** an 
 else branch:
+<br />从入门教程中，您已经知道可以使用 if 条件进行空值检查，或者使用 [Elvis 运算符 `?:`](kotlin-tour-null-safety.md#use-elvis-operator)。
+但是，如果您想在代码的后续部分使用返回的对象呢？您可以使用 if 条件**以及** else 分支来实现这一点：
 
 ```kotlin
 fun sendNotification(recipientAddress: String): String {
@@ -103,6 +124,7 @@ fun main() {
 {kotlin-runnable="true" id="kotlin-tour-scope-function-let-non-null-if"}
 
 However, a more concise approach is to use the `let` scope function:
+<br />然而，更简洁的方法是使用 `let` 作用域函数：
 
 ```kotlin
 fun sendNotification(recipientAddress: String): String {

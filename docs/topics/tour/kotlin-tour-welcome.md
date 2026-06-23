@@ -3,12 +3,13 @@
 <web-summary>Take the Kotlin tour to quickly grasp the fundamentals of the Kotlin programming language.</web-summary>
 
 > These tours can be completed entirely within your browser. There is no installation required.
+> <br />这些导览游完全可以在浏览器中完成，无需安装任何软件。
 > 
 { style = "note" }
 
 Quickly learn the essentials of the Kotlin programming language through our tours. Grasp the fundamentals with the beginner
 tour. Deepen your understanding with the intermediate tour.
-
+<br >通过我们的教程快速学习 Kotlin 编程语言的基础知识。通过入门教程掌握基础知识。 通过中级教程加深理解。
 <p></p> <!-- workaround for MRK057: Paragraph can only contain inline elements-->
 <list columns="2">
     <li>
