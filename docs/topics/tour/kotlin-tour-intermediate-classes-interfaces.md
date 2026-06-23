@@ -17,26 +17,34 @@
 In the beginner tour, you learned how to use classes and data classes to store data and maintain a collection of characteristics
 that can be shared in your code. Eventually, you will want to create a hierarchy to efficiently share code within your 
 projects. This chapter explains the options Kotlin provides for sharing code and how they can make your code safer and easier to maintain.
-
+<br />在入门教程中，您学习了如何使用类和数据类来存储数据，并维护可在代码中共享的特征集合。最终，您需要创建一个层级结构，以便在项目中高效地共享代码。本章将介绍 Kotlin 提供的代码共享选项，以及它们如何使您的代码更安全、更易于维护。
 ## Class inheritance
+类继承
 
 In a previous chapter, we covered how you can use extension functions to extend classes without modifying the original source code.
 But what if you are working on something complex where sharing code **between** classes would be useful? In such cases, 
 you can use class inheritance.
+<br />在前一章中，我们介绍了如何使用扩展函数在不修改原始源代码的情况下扩展类。
+但是，如果您正在处理一些复杂的项目，需要在类之间共享代码，该怎么办呢？在这种情况下，您可以使用类继承。
 
 By default, classes in Kotlin can't be inherited. Kotlin is designed this way to prevent unintended inheritance and make
 your classes easier to maintain.
+<br />默认情况下，Kotlin 中的类不能被继承。Kotlin 这样设计是为了防止意外继承，并使类更易于维护。
 
 Kotlin classes only support **single inheritance**, meaning it is only possible to inherit from **one class at a time**.
 This class is called the **parent**.
+<br />Kotlin 类仅支持**单继承**，这意味着**一次只能继承一个类**。
+这个类被称为**父类**。
 
 The parent of a class inherits from another class (the grandparent), forming a hierarchy. At the top of Kotlin's class
 hierarchy is the common parent class: `Any`. All classes ultimately inherit from the `Any` class:
+<br />一个类的父类继承自另一个类（祖父类），从而形成一个继承层次结构。在 Kotlin 的类继承层次结构的顶端是公共父类：`Any`。所有类最终都继承自 `Any` 类。
 
 ![An example of the class hierarchy with Any type](any-type-class.png){width="200"}
 
 The `Any` class provides the `toString()` function as a member function automatically. Therefore, you can
 use this inherited function in any of your classes. For example:
+<br />`Any` 类会自动提供 `toString()` 函数作为成员函数。因此，您可以在任何类中使用此继承函数。例如：
 
 ```kotlin
 class Car(val make: String, val model: String, val numberOfDoors: Int)
