@@ -16,11 +16,14 @@
 
 In this chapter, you'll learn about open classes, how they work with interfaces, and other special
 types of classes available in Kotlin.
+<br />本章将介绍开放类、它们如何与接口配合使用，以及 Kotlin 中其他特殊类型的类。
 
 ## Open classes
+开放类
 
 If you can't use interfaces or abstract classes, you can explicitly make a class inheritable by declaring it as **open**.
 To do this, use the `open` keyword before your class declaration:
+<br />如果不能使用接口或抽象类，可以通过将类声明为**open** 来显式地使其可继承。 为此，请在类声明前使用 `open` 关键字：
 
 ```kotlin
 open class Vehicle(val make: String, val model: String)
@@ -28,6 +31,8 @@ open class Vehicle(val make: String, val model: String)
 
 To create a class that inherits from another, add a colon after your class header followed by a call to the constructor
 of the parent class that you want to inherit from. In this example, the `Car` class inherits from the `Vehicle` class:
+<br />要创建一个继承自另一个类的类，请在类名后添加一个冒号，然后调用要继承的父类的构造函数。
+在本例中，`Car` 类继承自 `Vehicle` 类：
 
 ```kotlin
 open class Vehicle(val make: String, val model: String)
@@ -48,17 +53,24 @@ fun main() {
 Just like when creating a normal class instance, if your class inherits from a parent class, then it must initialize
 all the parameters declared in the parent class header. So in the example, the `car` instance of the `Car` class initializes
 the parent class parameters: `make` and `model`.
+<br />就像创建普通类实例一样，如果你的类继承自父类，那么它必须初始化父类头文件中声明的所有参数。
+因此，在示例中，`Car` 类的 `car` 实例初始化了父类的参数：`make` 和 `model`。
 
 ### Overriding inherited behavior
+覆盖继承的行为
 
 If you want to inherit from a class but change some of the behavior, you can override the inherited behavior.
+<br />如果你想继承某个类但改变它的一些行为，你可以重写继承的行为。
 
 By default, it's not possible to override a member function or property of a parent class. Just like with abstract classes,
 you need to add special keywords.
+<br />默认情况下，无法重写父类的成员函数或属性。就像抽象类一样， 你需要添加特殊的关键字。
 
 #### Member functions
+成员函数
 
 To allow a function in the parent class to be overridden, use the `open` keyword before its declaration in the parent class:
+<br />要允许父类中的函数被重写，请在父类中声明该函数之前使用 `open` 关键字：
 
 ```kotlin
 open fun displayInfo() {}
@@ -66,6 +78,7 @@ open fun displayInfo() {}
 {validate="false"}
 
 To override an inherited member function, use the `override` keyword before the function declaration in the child class:
+<br />要重写继承的成员函数，请在子类中函数声明前使用 `override` 关键字：
 
 ```kotlin
 override fun displayInfo() {}
@@ -73,6 +86,7 @@ override fun displayInfo() {}
 {validate="false"}
 
 For example:
+<br />例如：
 
 ```kotlin
 open class Vehicle(val make: String, val model: String) {
@@ -101,21 +115,29 @@ fun main() {
 {kotlin-runnable="true" id="kotlin-tour-class-override-function"}
 
 This example:
+这个例子：
 
 * Creates two instances of the `Car` class that inherit from the `Vehicle` class: `car1` and `car2`.
+  <br />创建两个继承自 `Vehicle` 类的 `Car` 类实例：`car1` 和 `car2`。
 * Overrides the `displayInfo()` function in the `Car` class to also print the number of doors.
+  <br />重写 `Car` 类中的 `displayInfo()` 函数，使其也能打印车门数量。
 * Calls the overridden `displayInfo()` function on `car1` and `car2` instances.
+  <br />对 `car1` 和 `car2` 实例调用重写的 `displayInfo()` 函数。
 
 #### Properties
+特性
 
 In Kotlin, it's not common practice to make a property inheritable by using the `open` keyword and overriding it later. Most of the
 time, you use an abstract class or an interface where properties are inheritable by default.
+<br />在 Kotlin 中，通常不会使用 `open` 关键字使属性可继承，然后再进行重写。大多数情况下，你会使用抽象类或接口，其中属性默认是可继承的。
 
 Properties inside open classes are accessible by their child class. In general, it's better to access them directly rather
 than override them with a new property.
+<br />开放类中的属性可以被其子类访问。通常情况下，最好直接访问这些属性，而不是用新属性覆盖它们。
 
 For example, let's say that you have a property called `transmissionType` that you want to override later. The syntax for
 overriding properties is exactly the same as for overriding member functions. You can do this:
+<br />例如，假设你有一个名为 `transmissionType` 的属性，你之后想要重写它。 重写属性的语法与重写成员函数的语法完全相同。你可以这样做：
 
 ```kotlin
 open class Vehicle(val make: String, val model: String) {
@@ -129,6 +151,7 @@ class Car(make: String, model: String, val numberOfDoors: Int) : Vehicle(make, m
 
 However, this is not good practice. Instead, you can add the property to the constructor of your inheritable class and 
 declare its value when you create the `Car` child class:
+<br />然而，这不是一个好的做法。正确的做法是，您可以将该属性添加到可继承类的构造函数中，并在创建 `Car` 子类时声明其值：
 
 ```kotlin
 open class Vehicle(val make: String, val model: String, val transmissionType: String = "Manual")
@@ -139,13 +162,17 @@ class Car(make: String, model: String, val numberOfDoors: Int) : Vehicle(make, m
 Accessing properties directly, instead of overriding them, leads to simpler and more readable code. By declaring properties
 once in the parent class and passing their values through the constructor, you eliminate the need for unnecessary overrides
 in child classes.
+<br />直接访问属性而不是重写属性，可以编写更简洁、更易读的代码。通过在父类中声明属性，并在构造函数中传递其值，可以避免在子类中进行不必要的重写。
 
 For more information about class inheritance and overriding class behavior, see [Inheritance](inheritance.md).
+<br />有关类继承和重写类行为的更多信息，请参阅[继承](inheritance.md)。
 
 ### Open classes and interfaces
+开放类和接口
 
 You can create a class that inherits a class **and** implements multiple interfaces. In this case, you must declare
 the parent class first, after the colon, before listing the interfaces:
+<br />您可以创建一个继承自某个类**并**实现多个接口的类。在这种情况下，您必须先声明父类（在冒号之后），然后再列出接口：
 
 ```kotlin
 // Define interfaces
@@ -177,22 +204,30 @@ class ElectricCar(
 ```
 
 ## Special classes
+特殊类
 
 In addition to abstract, open, and data classes, Kotlin has special types of classes designed for various purposes, such 
 as restricting specific behavior or reducing the performance impact of creating small objects.
+<br />除了抽象类、开放类和数据类之外，Kotlin 还具有一些特殊类型的类，这些类是为各种目的而设计的，例如：
+限制特定行为或减少创建小型对象对性能的影响。
 
 ### Sealed classes
+密封类
 
 There may be times when you want to restrict inheritance. You can do this with sealed classes. Sealed classes are a special
 type of [abstract class](kotlin-tour-intermediate-classes-interfaces.md#abstract-classes). Once you declare that a class is sealed, you can only create child classes 
 from it within the same package. It's not possible to inherit from the sealed class outside of this scope.
+<br />有时您可能需要限制继承。您可以使用密封类来实现这一点。密封类是一种特殊的[抽象类](kotlin-tour-intermediate-classes-interfaces.md#abstract-classes)。
+一旦您声明一个类是密封的，您只能在同一个包内创建它的子类。在这个范围之外，无法从密封类继承。
 
 > A package is a collection of code with related classes and functions, typically within a directory. To learn more about
 > packages in Kotlin, see [Packages and imports](packages.md).
+> <br />包是包含相关类和函数的代码集合，通常位于一个目录中。要了解有关 Kotlin 中包的更多信息，请参阅[包和导入](packages.md)。
 > 
 {style="tip"}
 
 To create a sealed class, use the `sealed` keyword:
+<br />要创建密封类，请使用 `sealed` 关键字：
 
 ```kotlin
 sealed class Mammal
@@ -200,6 +235,7 @@ sealed class Mammal
 
 Sealed classes are particularly useful when combined with a `when` expression. By using a `when` expression, you can
 define the behavior for all possible child classes. For example:
+<br />密封类与 `when` 表达式结合使用时尤其有用。通过使用 `when` 表达式，您可以 定义所有可能的子类的行为。例如：
 
 ```kotlin
 sealed class Mammal(val name: String)
@@ -222,28 +258,39 @@ fun main() {
 {kotlin-runnable="true" id="kotlin-tour-sealed-classes"}
 
 In the example:
+<br />例如：
 
 * There is a sealed class called `Mammal` that has the `name` parameter in the constructor.
+  <br />有一个名为 `Mammal` 的密封类，其构造函数中有一个 `name` 参数。
 * The `Cat` class inherits from the `Mammal` sealed class and uses the `catName` parameter in its own constructor as
   the `name` parameter from the `Mammal` class.
+  <br />`Cat` 类继承自 `Mammal` 密封类，并在其自身的构造函数中使用 `catName` 参数作为来自 `Mammal` 类的 `name` 参数。
 * The `Human` class inherits from the `Mammal` sealed class and uses the `humanName` parameter in its own constructor as
   the `name` parameter from the `Mammal` class. It also has the `job` parameter in its constructor.
+  <br />`Human` 类继承自 `Mammal` 密封类，并在其构造函数中使用 `humanName` 参数作为 `Mammal` 类的 `name` 参数。 此外，它的构造函数中还包含 `job` 参数。
 * The `greetMammal()` function accepts an argument of `Mammal` type and returns a string.
+  <br />`greetMammal()` 函数接受一个 `Mammal` 类型的参数，并返回一个字符串。
 * Within the `greetMammal()` function body, there's a `when` expression that uses the [`is` operator](typecasts.md#is-and-is-operators) to check the type of `mammal` and decide which action to perform.
+  <br />在 `greetMammal()` 函数体中，有一个 `when` 表达式，它使用 [`is` 运算符](typecasts.md#is-and-is-operators) 来检查 `mammal` 的类型，并决定要执行哪个操作。
 * The `main()` function calls the `greetMammal()` function with an instance of the `Cat` class and `name` parameter called `Snowy`.
-
+  <br />`main()` 函数调用 `greetMammal()` 函数，传入一个名为 `Snowy` 的 `Cat` 类实例和 `name` 参数。
 > This tour discusses the `is` operator in more detail in the [Null safety](kotlin-tour-intermediate-null-safety.md) chapter.
-> 
+> <br />本教程在 [空安全](kotlin-tour-intermediate-null-safety.md) 章节中更详细地讨论了 `is` 运算符。
+>
 {style ="tip"}
 
 For more information about sealed classes and their recommended use cases, see [Sealed classes and interfaces](sealed-classes.md).
+<br />有关密封类及其推荐用例的更多信息，请参阅[密封类和接口](sealed-classes.md)。
 
 ### Enum classes
+枚举类
 
 Enum classes are useful when you want to represent a finite set of distinct values in a class. An enum class contains enum
 constants, which are themselves instances of the enum class.
+<br />当您需要用类来表示一组有限的不同值时，枚举类非常有用。枚举类包含枚举常量，这些常量本身也是枚举类的实例。
 
 To create an enum class, use the `enum` keyword:
+<br />要创建枚举类，请使用 `enum` 关键字：
 
 ```kotlin
 enum class State
@@ -251,6 +298,7 @@ enum class State
 
 Let's say that you want to create an enum class that contains the different states of a process. Each enum constant must
 be separated by a comma `,`:
+<br />假设你想创建一个枚举类，其中包含进程的不同状态。每个枚举常量必须用逗号 `,` 分隔：
 
 ```kotlin
 enum class State {
@@ -260,12 +308,14 @@ enum class State {
 
 The `State` enum class has enum constants: `IDLE`, `RUNNING`, and `FINISHED`. To access an enum constant, use the
 class name followed by a `.` and the name of the enum constant:
+<br />`State` 枚举类包含枚举常量：`IDLE`、`RUNNING` 和 `FINISHED`。要访问枚举常量，请使用以下方式： 类名后跟一个点号 `.`，然后是枚举常量的名称：
 
 ```kotlin
 val state = State.RUNNING
 ```
 
 You can use this enum class with a `when` expression to define the action to take depending on the value of the enum constant:
+<br />你可以将此枚举类与 `when` 表达式一起使用，根据枚举常量的值来定义要执行的操作：
 
 ```kotlin
 enum class State {
@@ -286,10 +336,14 @@ fun main() {
 {kotlin-runnable="true" id="kotlin-tour-enum-classes"}
 
 Enum classes can have properties and member functions just like normal classes. 
+<br />枚举类可以像普通类一样拥有属性和成员函数。
 
 For example, let's say you're working with HTML and you want to create an enum class containing some colors. 
 You want each color to have a property, let's call it `rgb`, that contains their RGB value as a hexadecimal. 
 When creating the enum constants, you must initialize it with this property:
+<br />例如，假设您正在使用 HTML，并且想要创建一个包含一些颜色的枚举类。
+您希望每种颜色都有一个属性，我们称之为 `rgb`，其中包含其 RGB 值（十六进制）。
+创建枚举常量时，您必须使用此属性对其进行初始化：
 
 ```kotlin
 enum class Color(val rgb: Int) {
@@ -301,10 +355,12 @@ enum class Color(val rgb: Int) {
 ```
 
 > Kotlin stores hexadecimals as integers, so the `rgb` property has the `Int` type, not the `String` type.
+> <br />Kotlin 将十六进制数存储为整数，因此 `rgb` 属性具有 `Int` 类型，而不是 `String` 类型。
 >
 {style="note"}
 
 To add a member function to this class, separate it from the enum constants with a semicolon `;`:
+<br />要向此类添加成员函数，请用分号 `;` 将其与枚举常量分隔开：
 
 ```kotlin
 enum class Color(val rgb: Int) {
@@ -335,16 +391,22 @@ fun main() {
 
 In this example, the `containsRed()` member function accesses the value of the enum constant's `rgb` property using the
 `this` keyword and checks if the hexadecimal value contains `FF` as its first bits to return a boolean value.
+<br />在这个例子中，`containsRed()` 成员函数使用 `this` 关键字访问枚举常量的 `rgb` 属性的值，并检查十六进制值的前几位是否包含 `FF`，如果包含则返回布尔值。
 
 For more information, see [Enum classes](enum-classes.md).
+<br />有关更多信息，请参阅[枚举类](enum-classes.md)。
 
 ### Inline value classes
+内联值类
 
 Sometimes in your code, you may want to create small objects from classes and use them only briefly. This approach can
 have a performance impact. Inline value classes are a special type of class that avoids this performance impact. However,
 they can only contain values.
+<br />有时在代码中，您可能需要从类创建小型对象，并且只短暂地使用它们。这种做法可能会影响性能。
+内联值类是一种特殊的类，可以避免这种性能影响。但是，它们只能包含值。
 
 To create an inline value class, use the `value` keyword and the `@JvmInline` annotation:
+<br />要创建内联值类，请使用 `value` 关键字和 `@JvmInline` 注解：
 
 ```kotlin
 @JvmInline
@@ -353,12 +415,15 @@ value class Email
 
 > The `@JvmInline` annotation instructs Kotlin to optimize the code when it is compiled. To learn more,
 > see [Annotations](annotations.md).
+> <br />`@JvmInline` 注解指示 Kotlin 在编译代码时对其进行优化。要了解更多信息，请参阅[注解](annotations.md)。
 > 
 {style="tip"}
 
 An inline value class **must** have a single property initialized in the class header.
+<br />内联值类**必须**在类头中初始化一个属性。
 
 Let's say that you want to create a class that collects an email address:
+<br />假设你想创建一个用于收集电子邮件地址的类：
 
 ```kotlin
 // The address property is initialized in the class header.
@@ -378,25 +443,38 @@ fun main() {
 {kotlin-runnable="true" id="kotlin-tour-inline-value-class"}
 
 In the example:
+例如：
 
 * `Email` is an inline value class that has one property in the class header: `address`.
+<br />`Email` 是一个内联值类，它在类头中有一个属性：`address`。
 * The `sendEmail()` function accepts objects with type `Email` and prints a string to the standard output.
+<br />`sendEmail()` 函数接受类型为 `Email` 的对象，并将字符串打印到标准输出。
 * The `main()` function:
+<br />`main()` 函数：
     * Creates an instance of the `Email` class called `myEmail`.
+      <br />创建一个名为 `myEmail` 的 `Email` 类的实例。
     * Calls the `sendEmail()` function on the `myEmail` object.
+      <br />对 `myEmail` 对象调用 `sendEmail()` 函数。
 
 By using an inline value class, you make the class inlined and can use it directly in your code without creating an object.
 This can significantly reduce memory footprint and improve your code's runtime performance.
+<br />通过使用内联值类，您可以将该类内联，无需创建对象即可在代码中直接使用它。
+这可以显著减少内存占用并提高代码的运行时性能。
 
 For more information about inline value classes, see [Inline value classes](inline-classes.md).
+<br />有关内联值类的更多信息，请参阅[内联值类](inline-classes.md)。
 
 ## Practice
+实践
 
 ### Exercise 1 {initial-collapse-state="collapsed" collapsible="true" id="special-classes-exercise-1"}
 
 You manage a delivery service and need a way to track the status of packages. Create a sealed class called `DeliveryStatus`,
 containing data classes to represent the following statuses: `Pending`, `InTransit`, `Delivered`, `Canceled`. Complete
 the `DeliveryStatus` class declaration so that the code in the `main()` function runs successfully:
+<br />您管理一家快递公司，需要一种方法来跟踪包裹状态。创建一个名为 `DeliveryStatus` 的密封类，
+其中包含表示以下状态的数据类：`Pending`、`InTransit`、`Delivered` 和 `Canceled`。
+完善 `DeliveryStatus` 类的声明，以便 `main()` 函数中的代码能够成功运行：
 
 |---|---|
 
@@ -487,6 +565,8 @@ fun main() {
 In your program, you want to be able to handle different statuses and types of errors. You have a sealed class to capture
 the different statuses which are declared in data classes or objects. Complete the code below by creating an enum class 
 called `Problem` that represents the different problem types: `NETWORK`, `TIMEOUT`, and `UNKNOWN`.
+<br />在你的程序中，你需要处理不同的状态和错误类型。你有一个密封类来捕获 在数据类或对象中声明的不同状态。
+请创建一个名为 `Problem` 的枚举类，用于表示不同的错误类型：`NETWORK`、`TIMEOUT` 和 `UNKNOWN`，并完成以下代码。
 
 |---|---|
 
@@ -564,5 +644,7 @@ fun main() {
 {initial-collapse-state="collapsed" collapsible="true" collapsed-title="Example solution" id="kotlin-tour-special-classes-solution-2"}
 
 ## Next step
+下一步
 
 [Intermediate: Properties](kotlin-tour-intermediate-properties.md)
+<br />[中级：属性](kotlin-tour-intermediate-properties.md)
