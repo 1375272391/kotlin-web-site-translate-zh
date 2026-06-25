@@ -16,22 +16,28 @@
 
 In the beginner tour, you learned how to handle `null` values in your code. This chapter covers common use cases for null
 safety features and how to make the most of them.
+在入门教程中，您学习了如何在代码中处理 `null` 值。本章将介绍空值安全特性的常见用例以及如何充分利用它们。
 
 ## Smart casts and safe casts
+智能转换和安全转换
 
 Kotlin can sometimes infer the type without explicit declaration. When you tell Kotlin to treat a variable or object as if it belongs to a
 specific type, this process is called **casting**. When a type is automatically cast, like when it's inferred, it's called
 **smart casting**.
+Kotlin 有时无需显式声明即可推断类型。当您指示 Kotlin 将变量或对象视为属于特定类型时，此过程称为**类型转换**。当类型自动转换时（例如类型推断），称为**智能转换**。
 
 ### is and !is operators
+is 和 !is 运算符
 
 Before we explore how casting works, let's see how you can check if an object has a certain type. For this, you can use the
 `is` and `!is` operators with `when` or `if` conditional expressions:
+在探讨类型转换的工作原理之前，我们先来看看如何检查对象是否具有特定类型。为此，您可以使用 `is` 和 `!is` 运算符以及 `when` 或 `if` 条件表达式：
 
 * `is` checks if the object has the type and returns a boolean value.
 * `!is` checks if the object **doesn't** have the type and returns a boolean value.
 
 For example:
+例如：
 
 ```kotlin
 fun printObjectType(obj: Any) {
@@ -63,14 +69,17 @@ fun main() {
 {kotlin-runnable="true" id="kotlin-tour-null-safety-casts"}
 
 > You've already seen an example of how to use a `when` conditional expression with the `is` and `!is` operators in the [Open and other special classes](kotlin-tour-intermediate-open-special-classes.md#sealed-classes) chapter.
-> 
+> 在[Open 和其他特殊类](kotlin-tour-intermediate-open-special-classes.md#sealed-classes)章节中，您已经看到了如何使用`when`条件表达式以及`is`和`!is`运算符的示例。
 {style="tip"}
 
 ### as and as? operators
+as 和 as? 运算符
 
 To explicitly _cast_ an object to any other type, use the `as` operator. This includes casting from a nullable 
 type to its non-nullable counterpart. If the cast isn't possible, the program crashes **at runtime**. This is why it's 
 called the **unsafe** cast operator.
+要显式地将对象强制*转换*为任何其他类型，请使用 `as` 运算符。这包括将可空类型强制转换为其不可空对应类型。
+如果强制转换不可行，程序将**在运行时**崩溃。这就是为什么它被称为**不安全**强制转换运算符的原因。
 
 ```kotlin
 fun main() {
