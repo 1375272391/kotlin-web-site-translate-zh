@@ -16,10 +16,10 @@
 
 In this chapter, you'll learn about open classes, how they work with interfaces, and other special
 types of classes available in Kotlin.
-<br />本章将介绍开放类、它们如何与接口配合使用，以及 Kotlin 中其他特殊类型的类。
+<br />本章将介绍公开类、它们如何与接口配合使用，以及 Kotlin 中其他特殊类型的类。
 
 ## Open classes
-开放类
+公开类
 
 If you can't use interfaces or abstract classes, you can explicitly make a class inheritable by declaring it as **open**.
 To do this, use the `open` keyword before your class declaration:
@@ -133,7 +133,7 @@ time, you use an abstract class or an interface where properties are inheritable
 
 Properties inside open classes are accessible by their child class. In general, it's better to access them directly rather
 than override them with a new property.
-<br />开放类中的属性可以被其子类访问。通常情况下，最好直接访问这些属性，而不是用新属性覆盖它们。
+<br />公开类中的属性可以被其子类访问。通常情况下，最好直接访问这些属性，而不是用新属性覆盖它们。
 
 For example, let's say that you have a property called `transmissionType` that you want to override later. The syntax for
 overriding properties is exactly the same as for overriding member functions. You can do this:
@@ -168,7 +168,7 @@ For more information about class inheritance and overriding class behavior, see 
 <br />有关类继承和重写类行为的更多信息，请参阅[继承](inheritance.md)。
 
 ### Open classes and interfaces
-开放类和接口
+公开类和接口
 
 You can create a class that inherits a class **and** implements multiple interfaces. In this case, you must declare
 the parent class first, after the colon, before listing the interfaces:
@@ -208,7 +208,7 @@ class ElectricCar(
 
 In addition to abstract, open, and data classes, Kotlin has special types of classes designed for various purposes, such 
 as restricting specific behavior or reducing the performance impact of creating small objects.
-<br />除了抽象类、开放类和数据类之外，Kotlin 还具有一些特殊类型的类，这些类是为各种目的而设计的，例如：
+<br />除了抽象类、公开类和数据类之外，Kotlin 还具有一些特殊类型的类，这些类是为各种目的而设计的，例如：
 限制特定行为或减少创建小型对象对性能的影响。
 
 ### Sealed classes
