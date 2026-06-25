@@ -220,4 +220,4 @@ fun main() {
 下一步
 
 [Intermediate: Scope functions](kotlin-tour-intermediate-scope-functions.md)
-[中级：作用域函数](kotlin-tour-intermediate-scope-functions.md)
+    <br />[中级：作用域函数](kotlin-tour-intermediate-scope-functions.md)
