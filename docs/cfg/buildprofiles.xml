@@ -40,5 +40,8 @@
         <kotlin-latest-url>%kotlinLatestUrl%</kotlin-latest-url>
     </variables>
     <llms-txt/>
+    <footer>
+        <link href="https://xm137.org.cn/">xm137.org.cn</link>
+    </footer>
     <build-profile instance="kr"/>
 </buildprofiles>
