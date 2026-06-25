@@ -393,4 +393,4 @@ fun main() {
 下一步
 
 [Intermediate: Open and special classes](kotlin-tour-intermediate-open-special-classes.md)
-<br />[中级：公开课和特色课](kotlin-tour-intermediate-open-special-classes.md)
+<br />[中级：公开类和特殊类](kotlin-tour-intermediate-open-special-classes.md)
