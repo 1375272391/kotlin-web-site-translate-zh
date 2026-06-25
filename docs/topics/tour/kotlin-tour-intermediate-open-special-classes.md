@@ -125,7 +125,7 @@ This example:
   <br />对 `car1` 和 `car2` 实例调用重写的 `displayInfo()` 函数。
 
 #### Properties
-特性
+属性
 
 In Kotlin, it's not common practice to make a property inheritable by using the `open` keyword and overriding it later. Most of the
 time, you use an abstract class or an interface where properties are inheritable by default.
@@ -443,7 +443,7 @@ fun main() {
 {kotlin-runnable="true" id="kotlin-tour-inline-value-class"}
 
 In the example:
-例如：
+<br />例如：
 
 * `Email` is an inline value class that has one property in the class header: `address`.
 <br />`Email` 是一个内联值类，它在类头中有一个属性：`address`。
