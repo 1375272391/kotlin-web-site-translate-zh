@@ -36,7 +36,7 @@ to explicitly specify the receiver each time. Without these additional reference
 The syntax for a lambda expression with receiver is different when you define the function type. First, write the receiver
 that you want to extend. Next, put a `.` and then complete the rest of your function type definition. For example:
 <br />定义函数类型时，带接收器的 lambda 表达式的语法有所不同。首先，编写要扩展的接收器。
-然后，添加一个点号（`.`），并完成函数类型定义的其余部分。例如：
+然后，添加一个点号`.`，并完成函数类型定义的其余部分。例如：
 
 ```kotlin
 MutableList<Int>.() -> Unit
