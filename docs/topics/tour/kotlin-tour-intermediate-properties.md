@@ -250,7 +250,7 @@ In these functions:
 * The `operator` keyword marks these functions as operator functions, enabling them to overload the `get()` and `set()` functions.
   <br />`operator` 关键字将这些函数标记为运算符函数，使它们能够重载 `get()` 和 `set()` 函数。
 * The `thisRef` parameter refers to the object **containing** the delegated property. By default, the type is set to `Any?`, but you may need to declare a more specific type.
-  <br />`thisRef` 参数指的是包含委托属性的对象。默认情况下，类型设置为 `Any?`，但您可能需要声明更具体的类型。
+  <br />`thisRef` 参数指的是**包含**委托属性的对象。默认情况下，类型设置为 `Any?`，但您可能需要声明更具体的类型。
 * The `property` parameter refers to the property whose value is accessed or changed. You can use this parameter to access information
 like the property's name or type. By default, the type is set to `KProperty<*>` but you can also use `Any?`. You don't need to worry about changing this in your code.
   <br />`property` 参数指的是要访问或更改其值的属性。您可以使用此参数访问属性名称或类型等信息。
