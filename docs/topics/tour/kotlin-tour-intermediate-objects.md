@@ -32,9 +32,9 @@ use as a single reference point for your program or to coordinate behavior acros
 >
 {style="tip"}
 
-Objects in Kotlin are **lazy**, meaning they are created only when accessed. Kotlin also ensures that all
+Objects in Kotlin are ***lazy**, meanin*g they are created only when accessed. Kotlin also ensures that all
 objects are created in a thread-safe manner so that you don't have to check this manually.
-<br />Kotlin 中的对象是**惰性求值**的，这意味着它们只有在被访问时才会创建。Kotlin 还确保所有对象都以线程安全的方式创建，因此您无需手动检查线程安全。
+<br />Kotlin 中的对象是**延迟求值**的，这意味着它们只有在被访问时才会创建。Kotlin 还确保所有对象都以线程安全的方式创建，因此您无需手动检查线程安全。
 
 To create an object declaration, use the `object` keyword:
 <br />要创建对象声明，请使用 `object` 关键字：
