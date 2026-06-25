@@ -24,7 +24,7 @@ can help you create a domain-specific language.
 In the beginner tour, you learned how to use [lambda expressions](kotlin-tour-functions.md#lambda-expressions). Lambda expressions can also have a receiver. 
 In this case, lambda expressions can access any member functions or properties of the receiver without having
 to explicitly specify the receiver each time. Without these additional references, your code is easier to read and maintain.
-<br />在入门教程中，您学习了如何使用[lambda表达式](kotlin-tour-functions.md#lambda-expressions)。lambda表达式也可以拥有接收者。
+    <br />在入门教程中，您学习了如何使用[lambda表达式](kotlin-tour-functions.md#lambda-expressions)。lambda表达式也可以拥有接收者。
 在这种情况下，lambda表达式可以访问接收者的任何成员函数或属性，而无需
 每次都显式指定接收者。省去了这些额外的引用，您的代码更易于阅读和维护。
 
