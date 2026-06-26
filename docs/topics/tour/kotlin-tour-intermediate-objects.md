@@ -390,7 +390,7 @@ fun main() {
 {initial-collapse-state="collapsed" collapsible="true" collapsed-title="Example solution" id="kotlin-tour-objects-solution-3"}
 
 ## Next step
-下一步
+接下来
 
 [Intermediate: Open and special classes](kotlin-tour-intermediate-open-special-classes.md)
 <br />[中级：公开类和特殊类](kotlin-tour-intermediate-open-special-classes.md)

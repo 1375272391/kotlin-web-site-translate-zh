@@ -898,7 +898,7 @@ fun main() {
 {initial-collapse-state="collapsed" collapsible="true" collapsed-title="Example solution" id="kotlin-tour-classes-interfaces-solution-4"}
 
 ## Next step
-下一步
+接下来
 
 [Intermediate: Objects](kotlin-tour-intermediate-objects.md)
 <br />[中级：对象](kotlin-tour-intermediate-objects.md)

@@ -644,7 +644,7 @@ fun main() {
 {initial-collapse-state="collapsed" collapsible="true" collapsed-title="Example solution" id="kotlin-tour-special-classes-solution-2"}
 
 ## Next step
-下一步
+接下来
 
 [Intermediate: Properties](kotlin-tour-intermediate-properties.md)
 <br />[中级：属性](kotlin-tour-intermediate-properties.md)

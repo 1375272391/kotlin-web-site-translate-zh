@@ -654,7 +654,7 @@ fun main() {
 {initial-collapse-state="collapsed" collapsible="true" collapsed-title="Example solution" id="kotlin-tour-scope-functions-solution-2"}
 
 ## Next step
-下一步
+接下来
 
 [Intermediate: Lambda expressions with receiver](kotlin-tour-intermediate-lambdas-receiver.md)
     <br />[中级：带接收器的 Lambda 表达式](kotlin-tour-intermediate-lambdas-receiver.md)

@@ -361,7 +361,7 @@ fun main() {
 {initial-collapse-state="collapsed" collapsible="true" collapsed-title="Example solution" id="kotlin-tour-lambda-receivers-solution-3"}
 
 ## Next step
-下一步
+接下来
 
 [Intermediate: Classes and interfaces](kotlin-tour-intermediate-classes-interfaces.md)
     <br />[中级：类和接口](kotlin-tour-intermediate-classes-interfaces.md)

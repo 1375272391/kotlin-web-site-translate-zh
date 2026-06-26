@@ -786,7 +786,7 @@ fun main() {
 {initial-collapse-state="collapsed" collapsible="true" collapsed-title="Example solution" id="kotlin-tour-null-safety-solution-4"}
 
 ## Next step
-下一步
+接下来
 
 [Intermediate: Libraries and APIs](kotlin-tour-intermediate-libraries-and-apis.md)
 <br />[中级：库和 API](kotlin-tour-intermediate-libraries-and-apis.md)

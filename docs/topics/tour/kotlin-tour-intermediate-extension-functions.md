@@ -217,7 +217,7 @@ fun main() {
 {initial-collapse-state="collapsed" collapsible="true" collapsed-title="Example solution" id="kotlin-tour-extension-functions-solution-2"}
 
 ## Next step
-下一步
+接下来
 
 [Intermediate: Scope functions](kotlin-tour-intermediate-scope-functions.md)
     <br />[中级：作用域函数](kotlin-tour-intermediate-scope-functions.md)
