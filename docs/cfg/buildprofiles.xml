@@ -41,8 +41,8 @@
     </variables>
     <llms-txt/>
     <footer>
+        <link href="https://kotlinlang.org/docs">Original site: kotlinlang.org/docs</link>
         <link href="https://xm137.org.cn/">xm137.org.cn</link>
-        <link href="https://kotlinlang.org/docs">原始站点: kotlinlang.org/docs</link>
     </footer>
     <build-profile instance="kr"/>
 </buildprofiles>
