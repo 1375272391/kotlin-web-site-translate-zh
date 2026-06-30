@@ -102,9 +102,12 @@ From building data pipelines to productionizing machine learning models, Kotlin 
 1. **Explore and experiment with your data:**
 
    * [DataFrame](https://kotlin.github.io/dataframe/overview.html) – a library for data analysis and manipulation.
+     <br />[DataFrame](https://kotlin.github.io/dataframe/overview.html) – 一个用于数据分析和操作的库。
    * [Kandy](https://kotlin.github.io/kandy/welcome.html) – a plotting tool for data visualization.
+     <br />[Kandy](https://kotlin.github.io/kandy/welcome.html) – 一个用于数据可视化的绘图工具。
 
 2. **Follow Kotlin for Data Analysis on Twitter:** [KotlinForData](http://twitter.com/KotlinForData).
+   <br />**在 Twitter 上关注 Kotlin for Data Analysis：** [KotlinForData](http://twitter.com/KotlinForData)。
 
 </tab>
 
