@@ -185,6 +185,10 @@ To declare a data class, use the keyword `data`:
 data class User(val name: String, val id: Int)
 ```
 
+The Kotlin compiler only uses the properties defined inside the [primary constructor](classes.md#primary-constructor)
+when generating member functions. If you declare properties in the data class body, they aren't included in the output
+of the generated functions.
+
 The most useful predefined member functions of data classes are:
 <br />数据类中最常用的预定义成员函数有：
 
