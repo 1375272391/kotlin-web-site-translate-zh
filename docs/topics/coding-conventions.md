@@ -192,7 +192,7 @@ interspersed with additional private methods used for the implementation).
 <br />实现接口时，实现成员的顺序应与接口成员的顺序保持一致（如有必要，可穿插使用实现过程中添加的私有方法）。
 
 ### Overload layout
-过载布局
+重载布局
 
 Always put overloads next to each other in a class.
 <br />类中超载函数始终放在相邻的位置。
