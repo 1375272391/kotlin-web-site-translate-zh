@@ -11,12 +11,12 @@ Quickly learn the essentials of the Kotlin programming language through our tour
 tour. Deepen your understanding with the intermediate tour.
 <br >通过我们的教程快速学习 Kotlin 编程语言的基础知识。通过入门教程掌握基础知识。 通过中级教程加深理解。
 <p></p> <!-- workaround for MRK057: Paragraph can only contain inline elements-->
-<list columns="2">
+<list columns="2" id="kotlin-tour-starting-page">
     <li>
-        <a href="kotlin-tour-hello-world.md"><img src="kotlin-tour-beginner.svg" alt="Start the beginner Kotlin tour" type="block"/></a>
+        <a href="kotlin-tour-hello-world.md" as="button" icon="arrow-right" icon-position="right">Beginner</a>
     </li>
     <li>
-        <a href="kotlin-tour-intermediate-extension-functions.md"><img src="kotlin-tour-intermediate.svg" alt="Start the intermediate Kotlin tour" type="block"/></a>
+        <a href="kotlin-tour-intermediate-extension-functions.md" as="button" icon="arrow-right" icon-position="right">Intermediate</a>
     </li>
     <li>
         <p><img src="icon-1.svg" width="20" /> <a href="kotlin-tour-hello-world.md">Hello world</a></p>

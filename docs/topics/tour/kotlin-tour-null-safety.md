@@ -2,15 +2,6 @@
 
 <no-index/>
 
-<tldr>
-    <p><img src="icon-1-done.svg" width="20" alt="First step" /> <a href="kotlin-tour-hello-world.md">Hello world</a><br />
-        <img src="icon-2-done.svg" width="20" alt="Second step" /> <a href="kotlin-tour-basic-types.md">Basic types</a><br />
-        <img src="icon-3-done.svg" width="20" alt="Third step" /> <a href="kotlin-tour-collections.md">Collections</a><br />
-        <img src="icon-4-done.svg" width="20" alt="Fourth step" /> <a href="kotlin-tour-control-flow.md">Control flow</a><br />
-        <img src="icon-5-done.svg" width="20" alt="Fifth step" /> <a href="kotlin-tour-functions.md">Functions</a><br />
-        <img src="icon-6-done.svg" width="20" alt="Sixth step" /> <a href="kotlin-tour-classes.md">Classes</a><br />
-        <img src="icon-7.svg" width="20" alt="Final step" /> <strong>Null safety</strong><br /></p>
-</tldr>
 
 In Kotlin, it's possible to have a `null` value. Kotlin uses `null` values when something is missing or not yet set.
 You've already seen an example of Kotlin returning a `null` value in the [Collections](kotlin-tour-collections.md#kotlin-tour-map-no-key)
@@ -189,7 +180,7 @@ fun main() {
 For more information about null safety in Kotlin, see [Null safety](null-safety.md).
 <br />有关 Kotlin 中空安全性的更多信息，请参阅[空安全性](null-safety.md)。
 
-## Practice
+## Practice {completion-point="true"}
 实践
 
 ### Exercise {initial-collapse-state="collapsed" collapsible="true"}
@@ -248,4 +239,13 @@ Congratulations! Now that you have completed the beginner tour, take your unders
 our intermediate tour:
 <br />恭喜！您已完成 Kotlin 入门教程，现在可以通过我们的中级教程进一步提升您的 Kotlin 水平：
 
-<a href="kotlin-tour-intermediate-extension-functions.md"><img src="start-intermediate-tour.svg" width="700" alt="Start the intermediate Kotlin tour" style="block"/></a>
+<seealso></seealso>
+
+<list columns="2" id="tour-nav">
+  <li>
+    <a as="button" href="kotlin-tour-classes.md" mode="outline" icon="arrow-left" icon-position="left">Previous step</a>
+  </li>
+  <li>
+    <a as="button" href="kotlin-tour-intermediate-extension-functions.md" mode="classic" icon="arrow-right" icon-position="right">Start intermediate Kotlin tour</a>
+  </li>
+</list>
