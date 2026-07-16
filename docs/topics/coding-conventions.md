@@ -249,6 +249,7 @@ Functions of this kind are usually defined at the top level.
    ```
 
 * `@Composable` functions that return `Unit`:
+<br />返回 `Unit` 的 `@Composable` 函数：
 
    ```kotlin
    @Composable fun TabHeader { /*...*/ }
