@@ -222,7 +222,8 @@ object EmptyDeclarationProcessor : DeclarationProcessor() { /*...*/ }
 函数名
  
 Names of functions, properties, and local variables start with a lowercase letter and use camel case without underscores:
-<br >函数、属性和局部变量的名称以小写字母开头，并使用驼峰命名法，不带下划线：
+<br />函数、属性和局部变量的名称以小写字母开头，并使用驼峰命名法，不带下划线：
+
 ```kotlin
 fun processDeclarations() { /*...*/ }
 var declarationCount = 1
@@ -237,7 +238,7 @@ Functions of this kind are usually defined at the top level.
 这类函数通常定义在顶层。
 
 * Factory functions that create class instances can have the same name as the abstract return type:
-  创建类实例的工厂函数可以与抽象返回类型同名：
+  <br />创建类实例的工厂函数可以与抽象返回类型同名：
 
    ```kotlin
    interface Foo { /*...*/ }
@@ -248,7 +249,6 @@ Functions of this kind are usually defined at the top level.
    ```
 
 * `@Composable` functions that return `Unit`:
-  <br />返回 `Unit` 的 `@Composable` 函数：
 
    ```kotlin
    @Composable fun TabHeader { /*...*/ }
