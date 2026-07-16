@@ -221,24 +221,38 @@ object EmptyDeclarationProcessor : DeclarationProcessor() { /*...*/ }
 ### Function names
 函数名
  
-Names of functions, properties and local variables start with a lowercase letter and use camel case with no underscores:
-<br />函数、属性和局部变量的名称以小写字母开头，并使用驼峰式大小写，不带下划线：
-
+Names of functions, properties, and local variables start with a lowercase letter and use camel case without underscores:
+<br >函数、属性和局部变量的名称以小写字母开头，并使用驼峰命名法，不带下划线：
 ```kotlin
 fun processDeclarations() { /*...*/ }
 var declarationCount = 1
 ```
 
-Exception: factory functions used to create instances of classes can have the same name as the abstract return type:
-<br />例外：用于创建类实例的工厂函数可以与抽象返回类型同名：
+### Names for class-like functions
+类函数的名称
 
-```kotlin
-interface Foo { /*...*/ }
+There are two exceptions where function names should follow class-naming convention instead.
+Functions of this kind are usually defined at the top level.
+<br />有两种例外情况，函数名应该遵循类命名约定。
+这类函数通常定义在顶层。
 
-class FooImpl : Foo { /*...*/ }
+* Factory functions that create class instances can have the same name as the abstract return type:
+  创建类实例的工厂函数可以与抽象返回类型同名：
 
-fun Foo(): Foo { return FooImpl() }
-```
+   ```kotlin
+   interface Foo { /*...*/ }
+
+   class FooImpl : Foo { /*...*/ }
+
+   fun Foo(): Foo { return FooImpl() }
+   ```
+
+* `@Composable` functions that return `Unit`:
+  <br />返回 `Unit` 的 `@Composable` 函数：
+
+   ```kotlin
+   @Composable fun TabHeader { /*...*/ }
+   ```
 
 ### Names for test methods
 测试方法的名称
