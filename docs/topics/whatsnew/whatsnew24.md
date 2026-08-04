@@ -97,10 +97,6 @@ For more information, see [KT-30155](https://youtrack.jetbrains.com/issue/KT-301
 
 <secondary-label ref="language"/>
 
-> Support for using explicit context arguments for context parameters in IntelliJ IDEA will be available in 2026.2.
-> 
-{style="note"}
-
 Kotlin 2.4.0 introduces explicit context arguments for [context parameters](context-parameters.md).
 
 Kotlin 2.3.20 [changed the overload resolution for context parameters](whatsnew2320.md#changes-to-overload-resolution-for-context-parameters).
@@ -1185,6 +1181,7 @@ Compared to using `maven-toolchains-plugin`, this parameter only affects Kotlin 
 For more information on configuring Kotlin Maven projects, see our [documentation](maven-configure-project.md).
 
 ## Build tools API
+<secondary-label ref="bta"/>
 
 Kotlin 2.4.0 brings a number of improvements to the build tools API (BTA). The BTA:
 
