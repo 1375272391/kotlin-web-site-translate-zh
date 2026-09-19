@@ -3,7 +3,7 @@
 <web-summary>Take the Kotlin tour to quickly grasp the fundamentals of the Kotlin programming language.</web-summary>
 
 > These tours can be completed entirely within your browser. There is no installation required.
-> <br />这些导览游完全可以在浏览器中完成，无需安装任何软件。
+> <br />这些导览完全可以在浏览器中完成，无需安装任何软件。
 > 
 { style = "note" }
 
