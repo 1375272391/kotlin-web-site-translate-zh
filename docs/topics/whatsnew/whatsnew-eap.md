@@ -21,13 +21,9 @@ The Kotlin %kotlinEapVersion% release is out! Here are some details of this EAP 
 <br />Kotlin %kotlinEapVersion% 版本已发布！以下是此 EAP 版本的一些详细信息：
 
 * **Standard library:** [Support for coroutine stack trace recovery and new features for checking equality and uniqueness of collection elements](#standard-library)
-  <br />**标准库：** [支持协程堆栈跟踪恢复以及用于检查集合元素相等性和唯一性的新功能](#standard-library)
-* **Kotlin/Native:** [Incremental compilation of `klib` artifacts enabled by default and new Swift export features](#kotlin-native)
-  <br />**Kotlin/Native：** [默认启用 `klib` 工件的增量编译以及新的 Swift 导出功能](#kotlin-native)
+* **Kotlin/Native:** [New Swift export features and automatically generated `Package.swift` files for SwiftPM dependencies](#kotlin-native)
 * **Kotlin/Wasm:** [Changes to top-level `require()` calls in `@JsFun` declarations, improved companion object initialization order, and support for Wasmtime in the Kotlin Gradle plugin](#kotlin-wasm)
-  <br />**Kotlin/Wasm：** [对 `@JsFun` 声明中的顶级 `require()` 调用进行了更改，改进了伴生对象的初始化顺序，并在 Kotlin Gradle 插件中支持 Wasmtime](#kotlin-wasm)
-* **Kotlin/JS:** [New DSL for browser-testing and support for exporting suspend lambdas as async functions](#kotlin-js)
-  <br />**Kotlin/JS：** [用于浏览器测试的新 DSL 以及支持将挂起 lambda 表达式导出为异步函数](#kotlin-js)
+* **Kotlin/JS:** [New DSL for browser testing and support for exporting suspend lambdas as async functions](#kotlin-js)
 * **Build tools API:** [Support for new targets: Kotlin/JS, Kotlin/Wasm, and Kotlin metadata](#build-tools-api)
   <br />**构建工具 API：** [支持新目标：Kotlin/JS、Kotlin/Wasm 和 Kotlin 元数据](#build-tools-api)
 * **Kotlin compiler:** [Experimental release of the native image](#kotlin-compiler-native-image)
@@ -62,13 +58,9 @@ This includes features with [Beta](components-stability.md#stability-levels-expl
 * [Standard library: Support for coroutine stack trace recovery](#support-for-coroutine-stack-trace-recovery)
   <br />[标准库：支持协程堆栈跟踪恢复](#support-for-coroutine-stack-trace-recovery)
 * [Standard library: New functions to check collection elements for equality and uniqueness](#new-functions-to-check-collection-elements-for-equality-and-uniqueness)
-  <br />[标准库：用于检查集合元素相等性和唯一性的新函数](#new-functions-to-check-collection-elements-for-equality-and-uniqueness)
-* [Kotlin/Native: separate Kotlin compiler image](#kotlin-compiler-native-image)
-  <br />[Kotlin/Native：独立的 Kotlin 编译器镜像](#kotlin-compiler-native-image)
-* [Kotlin/JS: New DSL for browser-testing](#new-dsl-for-browser-testing)
-  <br />[Kotlin/JS：用于浏览器测试的新DSL](#new-dsl-for-browser-testing)
+* [Kotlin/JS: New DSL for browser testing](#a-new-dsl-for-browser-testing)
 * [Build tools API: Support for Kotlin/JS, Kotlin/Wasm, and Kotlin metadata](#build-tools-api)
-  <br />[构建工具 API：支持 Kotlin/JS、Kotlin/Wasm 和 Kotlin 元数据](#build-tools-api)
+* [Kotlin compiler: Separate Kotlin compiler image](#kotlin-compiler-native-image)
 
 ## Standard library
 标准库
@@ -88,10 +80,9 @@ instances for stack trace recovery without adding a dependency on `kotlinx.corou
 <br />Kotlin %kotlinEapVersion% 将 `StackTraceRecoverable` 接口添加到标准库中。
 这改进了与 `kotlinx.coroutines` 库的集成，因为它允许您定义如何创建新的异常实例以进行堆栈跟踪恢复，而无需依赖 `kotlinx.coroutines`。
 
-Stack trace recovery helps with debugging when one coroutine throws an exception, and another rethrows it.
+Stack trace recovery helps with debugging when one coroutine throws an exception and another rethrows it.
 It lets you see where the exception originates and where another coroutine rethrows it.
-<br />当一个协程抛出异常，而另一个协程又重新抛出该异常时，堆栈跟踪恢复有助于调试。
-它可以让您看到异常的源头以及另一个协程重新抛出异常的位置。
+<br />堆栈跟踪恢复功能有助于调试：当一个协程抛出异常而另一个协程将其重新抛出时，它能让你看到异常的源头以及重新抛出该异常的协程位置。
 
 The `kotlinx.coroutines` library performs stack trace recovery by creating a new exception instance with additional
 coroutine stack trace information. This happens automatically for exceptions with constructors that take only an
@@ -104,10 +95,11 @@ If an exception constructor has additional required arguments, such as a line nu
 <br />如果异常构造函数有额外的必需参数，例如行号或错误代码，则实现`StackTraceRecoverable` 接口，
 以定义 `kotlinx.coroutines` 库如何创建该异常的新实例。
 
-To implement the interface, override the `copyForStackTraceRecovery()` function. This function returns a new exception
+To implement the interface, override the `copyForStackTraceRecovery()` function. In the override, return a new exception
 instance for stack trace recovery, or `null` if you don't want the `kotlinx.coroutines` library to copy the exception.
 <br />要实现此接口，请重写 `copyForStackTraceRecovery()` 函数。此函数返回一个新的异常实例以进行堆栈跟踪恢复；
 如果您不希望 `kotlinx.coroutines` 库复制异常，则返回 `null`。
+<br />若要实现该接口，请重写 `copyForStackTraceRecovery()` 函数。在重写实现中，返回一个新的异常实例以用于堆栈追踪恢复；如果不想让 `kotlinx.coroutines` 库复制该异常，则返回 `null`。
 
 > The `StackTraceRecoverable` interface is available on all targets, but the `kotlinx.coroutines`
 > library uses it for stack trace recovery only on the JVM.
@@ -124,7 +116,7 @@ recovery:
 
 ```kotlin
 import kotlin.coroutines.ExperimentalStdlibCoroutineSupportApi
-import kotlin.coroutines.StackTraceRecoverable
+import kotlin.coroutines.debug.StackTraceRecoverable
 
 @OptIn(ExperimentalStdlibCoroutineSupportApi::class)
 class FileEditException
@@ -145,9 +137,11 @@ private constructor(
         FileEditException(line, detail, this)
     }
 
-@OptIn(ExperimentalStdlibCoroutineSupportApi::class) 
 fun main() {
     val original = FileEditException(15, "Unexpected token")
+    
+    // Normally, you don't need to call this function directly unless you're testing its behavior
+    // The kotlinx.coroutines library invokes it automatically during stack trace recovery
     val copy = original.copyForStackTraceRecovery()
 
     println(copy.message)
@@ -157,11 +151,11 @@ fun main() {
     // true
 }
 ```
+{kotlin-runnable="true" kotlin-min-compiler-version="2.4.20-Beta2"}
 
 For more information, see the feature's [KEEP](https://github.com/Kotlin/KEEP/blob/main/proposals/stdlib/KEEP-0461-stacktrace-recoverable.md).
+
 We would appreciate your feedback in [YouTrack](https://youtrack.jetbrains.com/issue/KT-86595).
-<br />更多信息请参阅该功能的 [KEEP](https://github.com/Kotlin/KEEP/blob/main/proposals/stdlib/KEEP-0461-stacktrace-recoverable.md)。
-欢迎您在 [YouTrack](https://youtrack.jetbrains.com/issue/KT-86595) 中提供反馈。
 
 ### New functions to check collection elements for equality and uniqueness
 <primary-label ref="experimental-opt-in"/>
@@ -229,43 +223,8 @@ We would appreciate hearing your feedback on your experience with these function
 
 ## Kotlin/Native
 
-Kotlin %kotlinEapVersion% enables incremental compilation of `klib` artifacts by default, brings new Swift export
-features, including support for sealed classes and cross-language inheritance, and introduces the first release of the
-Kotlin compiler native image.
-<br />Kotlin %kotlinEapVersion% 默认启用 `klib` 工件的增量编译，引入新的 Swift 导出功能，
-包括对密封类和跨语言继承的支持，并推出了首个 Kotlin 编译器原生镜像版本。
-
-### Incremental compilation enabled by default
-<secondary-label ref="native"/>
-默认启用增量编译
-
-Starting with %kotlinEapVersion%, incremental compilation of `klib` artifacts is enabled by default.
-<br />从 %kotlinEapVersion% 开始，默认情况下启用 `klib` 工件的增量编译。
-
-With incremental compilation, if only a part of the `klib` artifact produced by the project module changes, only the affected part
-of the `klib` is further recompiled into a binary.
-<br />使用增量编译时，如果项目模块生成的 `klib` 工件只有一部分发生更改，则只有受影响的 `klib` 部分会被进一步重新编译成二进制文件。
-
-This optimization was first introduced in [Kotlin 1.9.20](whatsnew1920.md#incremental-compilation-of-klib-artifacts)
-and has proven to drastically reduce compilation time for debug builds.
-<br />这项优化最初是在 Kotlin 1.9.20 版本中引入的，
-并且已被证明可以大幅减少调试版本的编译时间。
-
-Note that in some cases, this optimization may come with a performance cost for clean builds.
-<br />请注意，在某些情况下，这种优化可能会降低全新构建的性能。
-
-If you face unexpected problems with this feature, you can disable it manually. To do that, set the following option
-in your `gradle.properties` file:
-<br />如果此功能出现意外问题，您可以手动禁用它。为此，请在 `gradle.properties` 文件中设置以下选项：
-
-```none
-kotlin.incremental.native=false
-```
-
-Please report any problems to our issue tracker [YouTrack](https://kotl.in/issue). For more tips on improving compilation
-time, see our [documentation](native-improving-compilation-time.md).
-<br />请将任何问题报告至我们的问题跟踪系统 [YouTrack](https://kotl.in/issue)。
-如需更多关于优化编译时间的技巧，请参阅我们的 [文档](native-improving-compilation-time.md)。
+Kotlin %kotlinEapVersion% brings new Swift export features, including support for sealed classes and cross-language
+inheritance, and automatic generation of `Package.swift` files for SwiftPM dependencies.
 
 ### New Swift export features
 <secondary-label ref="native"/>
@@ -333,47 +292,49 @@ Kotlin %kotlinEapVersion% introduces cross-language inheritance support to Swift
 
 A common use case for this feature is the [reverse import](native-lib-import-stability.md#swift-library-import) pattern,
 where you define a contract in Kotlin and provide platform-specific implementations on the Swift side.
-<br />此功能的一个常见用例是[反向导入](native-lib-import-stability.md#swift-library-import)模式，
-在这种模式下，您在 Kotlin 中定义一个契约，并在 Swift 端提供特定于平台的实现。
+This is especially useful when you need to use pure Swift libraries that can't be directly imported into Kotlin.
+<br />该功能的一个常见应用场景是“反向导入”（reverse import）模式，
+即在 Kotlin 中定义契约（接口），并在 Swift 端提供特定于平台的实现。
+当需要使用无法直接导入 Kotlin 的纯 Swift 库时，这种模式特别有用。
 
-For example, you can declare a Kotlin interface, implement it in Swift, and then pass the Swift object to Kotlin functions
-that accept that interface. This is especially useful when you need to use pure Swift libraries that can't be directly
-imported into Kotlin.
-<br />例如，您可以声明一个 Kotlin 接口，用 Swift 实现它，然后将 Swift 对象传递给接受该接口的 Kotlin 函数。
-这在您需要使用无法直接导入 Kotlin 的纯 Swift 库时尤其有用。
+To implement the pattern, declare a Kotlin superclass for the Swift implementation to inherit from and
+a Kotlin interface. Then implement the interface in Swift and pass the Swift object to Kotlin functions that accept
+that interface. For example, for the CryptoKit library:
+<br />若要实现该模式，请声明一个供 Swift 实现继承的 Kotlin 超类，以及一个 Kotlin 接口。随后，在 Swift 中实现该接口，并将该 Swift 对象传递给接受该接口的 Kotlin 函数。以 CryptoKit 库为例：
 
-For example, declare a Kotlin interface and a function that accepts it:
-<br />例如，声明一个 Kotlin 接口和一个接受该接口的函数：
+1. On the Kotlin side, declare an `open` base class and a Kotlin interface with a function that accepts it:
+   在 Kotlin 端，声明一个 `open` 基类以及一个包含接收该基类作为参数的函数的 Kotlin 接口：
 
-```kotlin
-// Kotlin
-interface CryptoProvider {
-   fun hashMD5(input: String): String
-}
-
-fun processHash(provider: CryptoProvider, input: String): String = provider.hashMD5(input)
-```
-
-On the Swift side, implement this interface using a pure Swift library and pass it back to Kotlin:
-<br />在 Swift 端，使用纯 Swift 库实现此接口，并将其传递回 Kotlin：
-
-```swift
-// Swift
-import CryptoKit
-
-class IosCryptoProvider: KotlinBase & CryptoProvider {
-   func hashMD5(input: String) -> String {
-       guard let data = input.data(using: .utf8) else { return "failed" }
-       return Insecure.MD5.hash(data: data).description
+   ```kotlin
+   // Kotlin
+   interface CryptoProvider {
+      fun hashMD5(input: String): String
    }
-}
 
-let provider = IosCryptoProvider()
+   fun processHash(provider: CryptoProvider, input: String): String = provider.hashMD5(input)
 
-// The call is dispatched to the Swift implementation
-// 该调用被分派至 Swift 实现。
-print(processHash(provider: provider, input: "Hello, world!"))
-```
+   open class SwiftBase 
+   ```
+
+2. On the Swift side, inherit from the exported `SwiftBase` class, implement the interface using a pure Swift library,
+   and pass the object back to Kotlin:
+
+   ```swift
+   // Swift
+   import CryptoKit
+
+   final class IosCryptoProvider: SwiftBase, CryptoProvider {
+      func hashMD5(input: String) -> String {
+          guard let data = input.data(using: .utf8) else { return "failed" }
+          return Insecure.MD5.hash(data: data).description
+      }
+   }
+
+   let provider = IosCryptoProvider()
+
+   // The call is dispatched to the Swift implementation
+   print(processHash(provider: provider, input: "Hello, world!"))
+   ```
 
 When Kotlin receives a Swift object, it treats it like an implementation of a regular interface, executing Swift code.
 <br />当 Kotlin 接收到 Swift 对象时，它会将其视为常规接口的实现，并执行 Swift 代码。
@@ -527,11 +488,11 @@ We would appreciate your feedback in [YouTrack](https://youtrack.jetbrains.com/i
 
 ## Kotlin/JS
 
-Kotlin %kotlinEapVersion% introduces a new experimental DSL for browser testing and adds support for exporting suspend
+Kotlin %kotlinEapVersion% introduces a new experimental DSL for browser testing and adds support for exporting suspending
 lambdas as JavaScript async functions.
-<br />Kotlin %kotlinEapVersion% 引入了一种新的用于浏览器测试的实验性 DSL，并增加了对将挂起的 lambda 表达式导出为 JavaScript 异步函数的支持。
+<br />Kotlin %kotlinEapVersion% 引入了一种用于浏览器测试的全新实验性 DSL，并增加了将挂起 Lambda 导出为 JavaScript 异步函数的功能。
 
-### New DSL for browser-testing
+### A new DSL for browser testing
 <primary-label ref="experimental-opt-in"/>
 <secondary-label ref="js"/>
 用于浏览器测试的新DSL
@@ -540,10 +501,9 @@ Kotlin %kotlinEapVersion% introduces a new experimental DSL for running Kotlin/J
 <br />Kotlin %kotlinEapVersion% 引入了一种新的实验性 DSL，用于在浏览器环境中运行 Kotlin/JS 测试。
 
 Currently, the Kotlin Gradle plugin uses [Karma](https://github.com/karma-runner/karma) as a browser launcher to run
-JavaScript tests across different browsers. The Karma project has been deprecated for 2 years now, which made us explore
-alternative ways to support browser testing.
-<br />目前，Kotlin Gradle 插件使用 [Karma](https://github.com/karma-runner/karma) 作为浏览器启动器，用于在不同浏览器上运行JavaScript 测试。
-Karma 项目已经弃用两年了，这促使我们探索 其他支持浏览器测试的方法。
+JavaScript tests across different browsers. The Karma project has been deprecated for two years now, which has led us to
+explore alternative ways to support browser testing.
+<br />目前，Kotlin Gradle 插件使用 [Karma](https://github.com/karma-runner/karma) 作为浏览器启动器，在不同浏览器中运行 JavaScript 测试。鉴于 Karma 项目已停止维护两年，我们正在探索支持浏览器测试的替代方案。
 
 The new DSL is intended to replace Karma as a manager of different tools under the hood and includes:
 新的DSL旨在取代Karma，作为底层不同工具的管理器，其包含：
@@ -552,8 +512,7 @@ The new DSL is intended to replace Karma as a manager of different tools under t
   <br />使用 [Mocha](https://mochajs.org/) 作为测试运行器。
 * [Webpack](https://webpack.js.org/) as a bundler (will be replaced with [Vite](https://vite.dev/)
   in [future releases](https://youtrack.jetbrains.com/issue/KT-48308/)).
-  <br />[Webpack](https://webpack.js.org/) 作为打包工具（将在[未来版本](https://youtrack.jetbrains.com/issue/KT-48308/)中被[Vite](https://vite.dev/)取代）。
-* [Playwright](https://playwright.dev/) as a browser driver and a distribution manager that supports Chromium, Firefox,
+* [Playwright](https://playwright.dev/) as a browser driver and a distribution manager that supports the Chromium, Firefox,
   and WebKit (Safari) browser engines.
   <br />[Playwright](https://playwright.dev/) 是一款浏览器驱动程序和分发管理器，支持 Chromium、Firefox 和 WebKit (Safari) 浏览器引擎。
 
@@ -561,27 +520,33 @@ To try out the new testing DSL, add the opt-in `test{}` block inside `browser{}`
 <br />要试用新的测试 DSL，请在 Kotlin/JS 目标的 `browser{}` 内添加可选的 `test{}` 代码块：
 
 ```kotlin
+import org.jetbrains.kotlin.gradle.ExperimentalJsTestDsl
+import kotlin.time.Duration.Companion.seconds
+
 kotlin {
     js {
         browser {
             @OptIn(ExperimentalJsTestDsl::class)
             // Add and configure the new test{} block
             test {
-                // Set up options common for all browsers
-                browserDefaults {
-                    timeout = Duration.ofSeconds(2)
-                    headless = true
-                }
-                // Enable Chromium test runner
+                // Configure default timeout for all runners
+                timeout = 2.seconds
+                // Configure headless mode using Gradle providers
+                headless = providers
+                    .environmentVariable("IS_IN_CI")
+                    .map { it.toBoolean() }
+                    .orElse(false)
+                // Enable and configure Chromium test runner
                 chromium {
                     // Override the common timeout option
-                    timeout = Duration.ofSeconds(5)
+                    timeout = 5.seconds
+                    // Add extra launch arguments
                     launchArgs.add("--no-sandbox")
                 }
                 // Enable Firefox test runner
                 firefox()
                 // Enable WebKit test runner
-                webkit { }
+                webkit()
                 // Enable and configure an additional WebKit test runner
                 webkit("noheadless") {
                     // Set up custom options
@@ -596,18 +561,18 @@ kotlin {
 The new DSL is in active development. We would appreciate your feedback in [YouTrack](https://youtrack.jetbrains.com/issue/KT-66897).
 <br />新的DSL正在积极开发中。我们非常欢迎您在[YouTrack](https://youtrack.jetbrains.com/issue/KT-66897)中提供反馈意见。
 
-### Support for exporting suspend lambdas as async functions
+### Support for exporting suspending lambdas as async functions
 <secondary-label ref="js"/>
 支持将挂起的 lambda 表达式导出为异步函数
 
-With Kotlin %kotlinEapVersion%, you can now export suspend lambdas as JavaScript async functions.
-<br />使用 Kotlin %kotlinEapVersion%，现在可以将挂起的 lambda 表达式导出为 JavaScript 异步函数。
+With Kotlin %kotlinEapVersion%, you can now export suspending [lambda expressions](lambdas.md#lambda-expressions-and-anonymous-functions)
+as JavaScript `async` functions.
+<br />使用 Kotlin %kotlinEapVersion%，您现在可以将挂起 [lambda 表达式](lambdas.md#lambda-expressions-and-anonymous-functions) 导出为 JavaScript `async` 函数。
 
-Previously, there was no way to export declarations containing suspend lambdas from Kotlin/JS libraries. Now the Kotlin
-compiler automatically handles the bridging between Kotlin's suspend functions and native JavaScript's [async/await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function)
+Previously, there was no way to export declarations containing suspending lambdas from Kotlin/JS libraries. Now the Kotlin
+compiler automatically handles the bridging between Kotlin's `suspend` functions and JavaScript's native [`async`/`await`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function)
 model, which is useful for mixed Kotlin/TypeScript codebases.
-<br />以前，Kotlin/JS 库无法导出包含挂起 lambda 表达式的声明。现在，Kotlin 编译器会自动处理 Kotlin 挂起函数和原生 JavaScript 的 [async/await](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function)
-模型之间的桥接，这对于混合使用 Kotlin 和 TypeScript 的代码库非常有用。
+<br />此前，无法从 Kotlin/JS 库中导出包含挂起 Lambda（suspending lambda）的声明。现在，Kotlin 编译器会自动处理 Kotlin 的 `suspend` 函数与 JavaScript 原生 [`async`/`await`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function) 模式之间的桥接，这对于 Kotlin 与 TypeScript 混合的代码库非常有用。
 
 To enable this feature, add the following compiler option to your `build.gradle.kts` file:
 <br />要启用此功能，请将以下编译器选项添加到您的 `build.gradle.kts` 文件中：
@@ -639,8 +604,8 @@ class TaskRunner {
 }
 ```
 
-From the TypeScript side, the suspend lambda appears as a regular async function:
-<br />从 TypeScript 的角度来看，挂起 lambda 表达式表现得像一个普通的异步函数：
+From the TypeScript side, the suspending lambda appears as a regular `async` function:
+<br />从 TypeScript 侧来看，挂起 lambda 表现为普通的 `async` 函数：
 
 ```typescript
 // TypeScript
@@ -676,32 +641,24 @@ It helps support Kotlin features and compatibility with the Kotlin compiler in a
 <br />BTA 是一个通用 API，它充当构建系统和 Kotlin 编译器生态系统之间的抽象层。
 它有助于在现有构建工具中支持 Kotlin 特性并保持与 Kotlin 编译器的兼容性。
 
-We plan to roll out the BTA support for the new targets in the Kotlin Gradle plugin gradually:
-我们计划逐步在 Kotlin Gradle 插件中推出对新目标的 BTA 支持：
+In Kotlin %kotlinEapVersion%, BTA is available as an opt-in for the new targets.
+To try it out, add the corresponding properties to your `gradle.properties` file:
+<br />在 Kotlin %kotlinEapVersion% 中，针对新目标平台，BTA 可作为一项可选功能使用。
+如需试用，请在 `gradle.properties` 文件中添加相应的属性：
 
-* In Kotlin 2.4.20-Beta1, BTA is enabled in Kotlin/JS, Kotlin/Wasm, and Kotlin metadata by default to gather feedback.
-  No additional changes in projects are required.
-  <br />在 Kotlin 2.4.20-Beta1 中，默认情况下已在 Kotlin/JS、Kotlin/Wasm 和 Kotlin 元数据中启用 BTA，以收集反馈。
-  无需对项目进行任何其他更改。
-* Between Kotlin 2.4.20-Beta2 and the final Kotlin 2.4.20 release, BTA in the new targets is available as an opt-in.
-  To try it out, add the corresponding properties to your `gradle.properties` file:
-  <br />在 Kotlin 2.4.20-Beta2 和最终版 Kotlin 2.4.20 之间，新目标中的 BTA 功能是可选的。
-  要尝试启用 BTA，请将相应的属性添加到您的 `gradle.properties` 文件中：
+```properties
+kotlin.wasm.runViaBuildToolsApi=true
+kotlin.js.runViaBuildToolsApi=true
+kotlin.metadata.runViaBuildToolsApi=true
+```
 
-
-  ```kotlin
-  kotlin.wasm.runViaBuildToolsApi = true
-  kotlin.js.runViaBuildToolsApi = true
-  kotlin.metadata.runViaBuildToolsApi = true
-  ```
-
-* Starting with Kotlin 2.5.0, BTA will be enabled in Kotlin/JS, Kotlin/Wasm, and Kotlin metadata by default again.
-  <br />从 Kotlin 2.5.0 开始，BTA 将再次默认在 Kotlin/JS、Kotlin/Wasm 和 Kotlin 元数据中启用。
+Starting with Kotlin 2.5.0, we plan to enable BTA in Kotlin/JS, Kotlin/Wasm, and Kotlin metadata by default.
+<br />从 Kotlin 2.5.0 开始，我们计划在 Kotlin/JS、Kotlin/Wasm 和 Kotlin 元数据中默认启用 BTA。
 
 If you're curious about the BTA proposal or want to share your feedback, see this [KEEP](https://github.com/Kotlin/KEEP/blob/build-tools-api/proposals/extensions/build-tools-api.md).
 <br />如果您对 BTA 提案感兴趣或想分享您的反馈，请参阅此 [KEEP](https://github.com/Kotlin/KEEP/blob/build-tools-api/proposals/extensions/build-tools-api.md)。
 
-### Kotlin compiler: Native image
+## Kotlin compiler: Native image
 <primary-label ref="experimental-general"/>
 <secondary-label ref="compiler"/>
 Kotlin 编译器：原生映像

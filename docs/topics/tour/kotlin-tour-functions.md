@@ -132,11 +132,10 @@ fun main() {
 ## Functions without return
 没有返回值的函数
 
-If your function doesn't return a useful value then its return type is `Unit`. `Unit` is a type with only one value – 
+If your function doesn't return a useful value, then its return type is `Unit`. `Unit` is a type with only one value – 
 `Unit`. You don't have to declare that `Unit` is returned explicitly in your function body. This means that you don't 
 have to use the `return` keyword or declare a return type:
-<br />如果你的函数没有返回任何有用的值，那么它的返回类型就是 `Unit`。`Unit` 是一种只有一个值的类型——`Unit`。
-你不需要在函数体中显式声明返回的是 `Unit`。这意味着你不需要使用 `return` 关键字或声明返回类型。
+<br />如果函数不返回有用的值，那么它的返回类型就是 `Unit`。`Unit` 是一种仅包含单个值（即 `Unit` 本身）的类型。你无需在函数体中显式声明返回 `Unit`，这意味着既不需要使用 `return` 关键字，也不需要声明返回类型：
 
 ```kotlin
 fun printMessage(message: String) {
@@ -382,9 +381,9 @@ fun main() {
 ```
 {kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-lambda-variable"}
 
-Lambda expressions can be hard to understand at first glance so let's break it down. Lambda expressions are written 
+Lambda expressions can be hard to understand at first glance, so let's break it down. Lambda expressions are written 
 within curly braces `{}`.
-<br />Lambda 表达式乍一看可能难以理解，所以让我们来详细讲解一下。Lambda 表达式写在花括号 `{}` 内。
+<br />Lambda 表达式初看起来可能难以理解，因此我们来详细剖析一下。Lambda 表达式写在花括号 `{}` 之中。
 
 Within the lambda expression, you write:
 <br />在 lambda 表达式中，您可以这样写：
@@ -488,7 +487,7 @@ the type of function parameters (`x`) in the lambda expression.
 >
 {style="note"}
 
-Another good example, is using the [`.map()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/map.html) 
+Another good example is using the [`.map()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/map.html) 
 function to transform items in a collection:
 <br />另一个很好的例子是使用 [`.map()`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/map.html) 函数来转换集合中的元素：
 
@@ -556,9 +555,8 @@ fun main() {
 ```
 {kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-lambda-function-type"}
 
-If your lambda expression has no parameters then the parentheses `()` are left empty. For example: `() -> Unit`
-<br />如果你的 lambda 表达式没有参数，那么括号 `()` 将留空。例如：`() -> Unit`
-
+If your lambda expression has no parameters, then the parentheses `()` are left empty. For example: `() -> Unit`
+<br />如果你的 Lambda 表达式没有参数，那么圆括号 `()` 留空。例如：`() -> Unit`
 > You must declare parameter and return types either in the lambda expression or as a function type. Otherwise, the
 > compiler won't be able to know what type your lambda expression is.
 > <br />你必须在 lambda 表达式中或作为函数类型声明参数和返回值类型。否则，编译器将无法确定 lambda 表达式的类型。

@@ -4,6 +4,8 @@
 
 <web-summary>Read the Kotlin 2.4.0 release notes covering new language features, updates to Kotlin Multiplatform, JVM, Native, JS, and Wasm, and build tool support for Gradle and Maven.</web-summary>
 
+_[Released: July 14, 2026](releases.md#release-history)_
+
 <tldr>
     <p> For details about bug fix release 2.4.10, see the <a href="https://github.com/JetBrains/kotlin/releases/tag/v2.4.10">changelog</a></p>
     <p> 有关错误修复版本 2.4.10 的详细信息，请参阅。 <a href="https://github.com/JetBrains/kotlin/releases/tag/v2.4.10">更新日志</a></p>

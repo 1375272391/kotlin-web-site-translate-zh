@@ -112,6 +112,8 @@ as identifiers in other contexts:
    <br />开始一个[处理特定异常类型的](exceptions.md)代码块。
  * `constructor` declares a [primary or secondary constructor](classes.md#constructors-and-initializer-blocks).
    <br />声明一个[主构造函数或辅助构造函数](classes.md#constructors-and-initializer-blocks)
+ * `context` declares [context parameters](context-parameters.md) for functions and properties.
+   <br />`context` 为函数和属性声明[上下文参数](context-parameters.md)。
  * `delegate` is used as an [annotation use-site target](annotations.md#annotation-use-site-targets).
    <br />用作 [注释使用站点目标](annotations.md#annotation-use-site-targets)。
  * `dynamic` references a [dynamic type](dynamic-type.md) in Kotlin/JS code.

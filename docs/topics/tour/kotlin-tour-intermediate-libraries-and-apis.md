@@ -358,14 +358,19 @@ Congratulations! You've completed the intermediate tour! Would you like to [shar
 As a next step, check out our tutorials for popular Kotlin applications:
 <br />接下来，请查看我们关于热门 Kotlin 应用程序的教程：
 
-* [Create a backend application with Spring Boot and Kotlin](jvm-create-project-with-spring-boot.md)
-  <br />[使用 Spring Boot 和 Kotlin 创建后端应用程序](jvm-create-project-with-spring-boot.md)
-* Create a cross-platform application for Android and iOS from scratch and:
-  <br />从零开始创建一个适用于 Android 和 iOS 的跨平台应用程序，并：
-    * [Share business logic while keeping the UI native](https://kotlinlang.org/docs/multiplatform/multiplatform-create-first-app.html)
-      <br />[在保持原生用户界面的同时共享业务逻辑](https://kotlinlang.org/docs/multiplatform/multiplatform-create-first-app.html)
-    * [Share business logic and UI](https://kotlinlang.org/docs/multiplatform/compose-multiplatform-create-first-app.html)
-      <br />[共享业务逻辑和用户界面](https://kotlinlang.org/docs/multiplatform/compose-multiplatform-create-first-app.html)
+<p></p> <!-- workaround for MRK057: Paragraph can only contain inline elements -->
+<panels columns="2" id="kotlin-tour-whats-next">
+    <panel>
+        <title>Kotlin for backend</title>
+        <p>Create a backend application with Spring Boot and Kotlin.</p>
+        <a href="jvm-create-project-with-spring-boot.md" as="button" icon="arrow-right" icon-position="right" id="kotlin-tour-backend-tutorial">Start</a>
+    </panel>
+    <panel>
+        <title>Kotlin Multiplatform</title>
+        <p>Create a cross-platform application from scratch and share business logic and UI.</p>
+        <a href="https://kotlinlang.org/docs/multiplatform/compose-multiplatform-create-first-app.html" as="button" icon="arrow-right" icon-position="right" id="kotlin-tour-cmp-tutorial">Start</a>
+    </panel>
+</panels>
 
 <seealso></seealso>
 

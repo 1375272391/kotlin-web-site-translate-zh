@@ -1,7 +1,7 @@
 [//]: # (title: Get started with Kotlin)
 
 <tldr>
-<p>Latest Kotlin release:<b> <a href="%kotlinLatestWhatsnew%">%kotlinVersion%</a></b></p>
+<p>Latest Kotlin release: <b><a href="%kotlinLatestWhatsnew%">%kotlinVersion%</a></b></p>
 </tldr>
 
 Kotlin is a modern language that's concise, multiplatform, and interoperable with Java and other languages.
@@ -10,7 +10,7 @@ Kotlin is a modern language that's concise, multiplatform, and interoperable wit
 New to Kotlin? Take our tour to learn the fundamentals directly in your browser.
 <br />Kotlin新手？参加我们的入门教程，直接在浏览器中学习基础知识。
 
-<a href="kotlin-tour-welcome.md"><img src="start-kotlin-tour.svg" width="700" alt="Start the Kotlin tour" style="block"/></a>
+<a href="kotlin-tour-welcome.md" as="button" mode="classic" icon="arrow-right" icon-position="right">Start the Kotlin tour</a>
 
 ## Install Kotlin
 安装 Kotlin

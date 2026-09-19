@@ -246,12 +246,12 @@ Using a `when` expression, update the following program so that it prints the co
 names of game console buttons.
 <br />使用 `when` 表达式，更新以下程序，使其在输入游戏机按钮名称时打印相应的操作。
 
-| **Button** | **Action**             |
-|------------|------------------------|
-| A          | Yes                    |
-| B          | No                     |
-| X          | Menu                   |
-| Y          | Nothing                |
+| **Button** | **Action**              |
+|------------|-------------------------|
+| A          | Yes                     |
+| B          | No                      |
+| X          | Menu                    |
+| Y          | Nothing                 |
 | Other      | There is no such button |
 
 | **按钮** | **操作**  |

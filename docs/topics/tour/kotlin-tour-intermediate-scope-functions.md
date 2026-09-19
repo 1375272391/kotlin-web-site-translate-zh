@@ -398,8 +398,8 @@ Now the example:
   <br />将 lambda 表达式传递给 `also` 作用域函数，该函数通过 `it` 关键字使用 `medals` 变量作为函数参数调用 `println()` 函数。
 
 Since the `also` function returns the object, it is useful for not only logging but debugging, chaining
-multiple operations, and performing other side-effect operations that don't affect the main flow of your code.
-<br />由于 `also` 函数会返回对象，因此它不仅可以用于记录日志，还可以用于调试、链接多个操作，以及执行其他不会影响代码主流程的副作用操作。
+multiple operations, and performing other side effect operations that don't affect the main flow of your code.
+<br />由于 `also` 函数会返回该对象，它不仅适用于日志记录，还可用于调试、链式调用多个操作，以及执行其他不影响代码主流程的副作用操作。
 
 ### With
 

@@ -9,22 +9,15 @@ application with Spring Boot and adding a database to store the information.
 Going through these four steps, you'll learn a lot of essential features of the Kotlin language: 
 <br />通过这四个步骤，你将学习到 Kotlin 语言的许多基本特性：
 
-![First step](icon-1.svg){width=25}{type="joined"}  [Create a Spring Boot project](jvm-create-project-with-spring-boot.md)
-<br />[创建一个 Spring Boot 项目](jvm-create-project-with-spring-boot.md)
-
-![Second step](icon-2.svg){width=25}{type="joined"} [Add a data class to Spring Boot project](jvm-spring-boot-add-data-class.md)
-<br />[向 Spring Boot 项目添加数据类](jvm-spring-boot-add-data-class.md)
-
-![Third step](icon-3.svg){width=25}{type="joined"}  [Add database support for the Spring Boot project](jvm-spring-boot-add-db-support.md)
-<br />[为 Spring Boot 项目添加数据库支持](jvm-spring-boot-add-db-support.md)
-
-![Fourth step](icon-4.svg){width=25}{type="joined"} [Use Spring Data CrudRepository for database access](jvm-spring-boot-using-crudrepository.md)
-<br />[使用 Spring Data CrudRepository 进行数据库访问](jvm-spring-boot-using-crudrepository.md)
+<p><img src="icon-1.svg" width="20" alt="First step"/> <a href="jvm-create-project-with-spring-boot.md">Create a Spring Boot project</a><br/>
+   <img src="icon-2.svg" width="20" alt="Second step"/> <a href="jvm-spring-boot-add-data-class.md">Add a data class to Spring Boot project</a><br/>
+   <img src="icon-3.svg" width="20" alt="Third step"/> <a href="jvm-spring-boot-add-db-support.md">Add database support for the Spring Boot project</a><br/>
+   <img src="icon-4.svg" width="20" alt="Fourth step"/> <a href="jvm-spring-boot-using-crudrepository.md">Use Spring Data CrudRepository for database access</a><br/>
+</p>
 
 ## Next step
 
-Start by [creating a Spring Boot project](jvm-create-project-with-spring-boot.md) with Kotlin using IntelliJ IDEA.
-<br />首先使用 IntelliJ IDEA 和 Kotlin [创建一个 Spring Boot 项目](jvm-create-project-with-spring-boot.md)。
+<a href="jvm-create-project-with-spring-boot.md" as="button" mode="classic" icon="arrow-right" icon-position="right">Start</a>
 
 ### See also
 参见

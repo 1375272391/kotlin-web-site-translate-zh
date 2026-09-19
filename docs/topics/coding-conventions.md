@@ -329,7 +329,7 @@ The name of a class is usually a noun or a noun phrase explaining what the class
 <br />类的名称通常是名词或名词短语，用来解释该类是什么：`List`、`PersonReader`。
 
 The name of a method is usually a verb or a verb phrase saying what the method _does_: `close`, `readPersons`.
-The name should also suggest if the method is mutating the object or returning a new one. For instance `sort` is
+The name should also suggest if the method is mutating the object or returning a new one. For instance, `sort` is
 sorting a collection in place, while `sorted` is returning a sorted copy of the collection.
 <br />方法名通常是一个动词或动词短语，用来描述方法的功能，例如 `close`、`readPersons`。
 方法名还应该表明方法是修改对象还是返回一个新对象。例如，`sort` 表示对集合进行原地排序，而 `sorted` 表示返回集合的排序版本。
