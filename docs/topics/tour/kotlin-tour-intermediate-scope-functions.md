@@ -399,7 +399,6 @@ Now the example:
 
 Since the `also` function returns the object, it is useful for not only logging but debugging, chaining
 multiple operations, and performing other side effect operations that don't affect the main flow of your code.
-<br />由于 `also` 函数会返回该对象，它不仅适用于日志记录，还可用于调试、链式调用多个操作，以及执行其他不影响代码主流程的副作用操作。
 
 ### With
 
