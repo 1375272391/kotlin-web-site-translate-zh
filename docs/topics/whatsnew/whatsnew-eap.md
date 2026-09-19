@@ -293,17 +293,12 @@ Kotlin %kotlinEapVersion% introduces cross-language inheritance support to Swift
 A common use case for this feature is the [reverse import](native-lib-import-stability.md#swift-library-import) pattern,
 where you define a contract in Kotlin and provide platform-specific implementations on the Swift side.
 This is especially useful when you need to use pure Swift libraries that can't be directly imported into Kotlin.
-<br />该功能的一个常见应用场景是“反向导入”（reverse import）模式，
-即在 Kotlin 中定义契约（接口），并在 Swift 端提供特定于平台的实现。
-当需要使用无法直接导入 Kotlin 的纯 Swift 库时，这种模式特别有用。
 
 To implement the pattern, declare a Kotlin superclass for the Swift implementation to inherit from and
 a Kotlin interface. Then implement the interface in Swift and pass the Swift object to Kotlin functions that accept
 that interface. For example, for the CryptoKit library:
-<br />若要实现该模式，请声明一个供 Swift 实现继承的 Kotlin 超类，以及一个 Kotlin 接口。随后，在 Swift 中实现该接口，并将该 Swift 对象传递给接受该接口的 Kotlin 函数。以 CryptoKit 库为例：
 
 1. On the Kotlin side, declare an `open` base class and a Kotlin interface with a function that accepts it:
-   在 Kotlin 端，声明一个 `open` 基类以及一个包含接收该基类作为参数的函数的 Kotlin 接口：
 
    ```kotlin
    // Kotlin
@@ -503,7 +498,6 @@ Kotlin %kotlinEapVersion% introduces a new experimental DSL for running Kotlin/J
 Currently, the Kotlin Gradle plugin uses [Karma](https://github.com/karma-runner/karma) as a browser launcher to run
 JavaScript tests across different browsers. The Karma project has been deprecated for two years now, which has led us to
 explore alternative ways to support browser testing.
-<br />目前，Kotlin Gradle 插件使用 [Karma](https://github.com/karma-runner/karma) 作为浏览器启动器，在不同浏览器中运行 JavaScript 测试。鉴于 Karma 项目已停止维护两年，我们正在探索支持浏览器测试的替代方案。
 
 The new DSL is intended to replace Karma as a manager of different tools under the hood and includes:
 新的DSL旨在取代Karma，作为底层不同工具的管理器，其包含：
@@ -567,7 +561,6 @@ The new DSL is in active development. We would appreciate your feedback in [YouT
 
 With Kotlin %kotlinEapVersion%, you can now export suspending [lambda expressions](lambdas.md#lambda-expressions-and-anonymous-functions)
 as JavaScript `async` functions.
-<br />使用 Kotlin %kotlinEapVersion%，您现在可以将挂起 [lambda 表达式](lambdas.md#lambda-expressions-and-anonymous-functions) 导出为 JavaScript `async` 函数。
 
 Previously, there was no way to export declarations containing suspending lambdas from Kotlin/JS libraries. Now the Kotlin
 compiler automatically handles the bridging between Kotlin's `suspend` functions and JavaScript's native [`async`/`await`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/async_function)
@@ -605,7 +598,6 @@ class TaskRunner {
 ```
 
 From the TypeScript side, the suspending lambda appears as a regular `async` function:
-<br />从 TypeScript 侧来看，挂起 lambda 表现为普通的 `async` 函数：
 
 ```typescript
 // TypeScript
@@ -643,8 +635,6 @@ It helps support Kotlin features and compatibility with the Kotlin compiler in a
 
 In Kotlin %kotlinEapVersion%, BTA is available as an opt-in for the new targets.
 To try it out, add the corresponding properties to your `gradle.properties` file:
-<br />在 Kotlin %kotlinEapVersion% 中，针对新目标平台，BTA 可作为一项可选功能使用。
-如需试用，请在 `gradle.properties` 文件中添加相应的属性：
 
 ```properties
 kotlin.wasm.runViaBuildToolsApi=true
@@ -653,7 +643,6 @@ kotlin.metadata.runViaBuildToolsApi=true
 ```
 
 Starting with Kotlin 2.5.0, we plan to enable BTA in Kotlin/JS, Kotlin/Wasm, and Kotlin metadata by default.
-<br />从 Kotlin 2.5.0 开始，我们计划在 Kotlin/JS、Kotlin/Wasm 和 Kotlin 元数据中默认启用 BTA。
 
 If you're curious about the BTA proposal or want to share your feedback, see this [KEEP](https://github.com/Kotlin/KEEP/blob/build-tools-api/proposals/extensions/build-tools-api.md).
 <br />如果您对 BTA 提案感兴趣或想分享您的反馈，请参阅此 [KEEP](https://github.com/Kotlin/KEEP/blob/build-tools-api/proposals/extensions/build-tools-api.md)。

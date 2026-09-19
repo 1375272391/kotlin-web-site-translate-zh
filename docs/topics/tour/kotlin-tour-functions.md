@@ -556,7 +556,7 @@ fun main() {
 {kotlin-runnable="true" kotlin-min-compiler-version="1.3" id="kotlin-tour-lambda-function-type"}
 
 If your lambda expression has no parameters, then the parentheses `()` are left empty. For example: `() -> Unit`
-<br />如果你的 Lambda 表达式没有参数，那么圆括号 `()` 留空。例如：`() -> Unit`
+
 > You must declare parameter and return types either in the lambda expression or as a function type. Otherwise, the
 > compiler won't be able to know what type your lambda expression is.
 > <br />你必须在 lambda 表达式中或作为函数类型声明参数和返回值类型。否则，编译器将无法确定 lambda 表达式的类型。

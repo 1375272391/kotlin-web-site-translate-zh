@@ -398,8 +398,7 @@ fun main() {
 
 > As an extension of this exercise, try using functions in companion objects as factory methods to construct
 > instances of a class. For an example and more information about this pattern, see [](object-declarations.md#companion-objects).
-> <br />作为本练习的延伸，尝试使用伴生对象中的函数作为工厂方法来构建类的实例。有关此模式的示例及更多信息，请参阅 [](object-declarations.md#companion-objects)。
-> 
+>
 {style="tip"}
 
 <seealso></seealso>
